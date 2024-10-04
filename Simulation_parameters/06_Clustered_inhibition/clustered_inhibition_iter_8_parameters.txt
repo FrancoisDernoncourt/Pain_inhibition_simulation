@@ -1,0 +1,91 @@
+General parameters -----
+   duration_with_ignored_window: 74. s
+   nb_motoneurons_full_pool_per_pool: 300
+   ISI_threshold_for_discontinuity: 0.2
+Sub-sampling of motor units (simulating the hdEMG motor unit identification process) -----
+   subsample_MUs_for_analysis: False
+   nb_of_MUs_to_subsample: 50
+   motor_unit_subsampling_probability_distribution: size
+   bias_towards_larger_motor_neurons_temperature: 5.0
+Rest and threshold voltage + voltage equilibrium -----
+   voltage_rest: 0. V
+   voltage_thresh: 10. mV
+   E_leak: 0. V
+   E_excit: 25. mV
+   E_inhib: -15. mV
+
+Input parameters -----
+   Common exitatory input -----
+       excitatory_input_baseline (before optimized input learning): 1.7
+       excitatory input for MVC: 6.0
+       excitatory_input_std: 0.015
+       excitatory_input_source: load_synthetic_input
+       excitation_weight_smallest_MN: 0.5
+       excitation_weight_largest_MN: 1.5
+       excitation_weight_relationship_from_smallest_to_largest: 1
+       excitatory_input_sourcefile: /Users/francoishug/Documents/Data/Pain_FHKT/Simulation/PAIN_sim_françois/Synthetic_signals.csv
+       excitatory_input_sourcefile_fsamp: 1000
+   Independent input (noise) -----
+       low_pass_filter_of_independent_noise: 50
+       independent_noise_ratio_std: 2
+   Inhibition weights distribtuon -----
+       inhibition_weight_distribution: multimodal
+        - If multimodal distribution of inhibitory input:
+           inhibition_multimodal_number_of_modes: 2
+           inhibition_multimodal_weights_distrib_means: [0.5, 1.5]
+           inhibition_multimodal_weights_distrib_stds: [0.2, 0.2]
+           inhibition_multimodal_weights_proportions: [0.25, 0.75]
+        - If exponential distribution of inhibitory input:
+           inhibition_exponential_exponent_weights: 2
+           inhibition_exponential_constant_weights: 1.5
+           inhibition_exponential_offset_weights: 0
+       nb_inhibitory_input: 1
+       low_pass_filter_of_inhibitory_input: 5
+       inhibitory_input_mean: 0.12
+       inhibitory_input_std: 0.015
+       inhibitory_input_source: load_synthetic_input
+       inhibitory_input_sourcefile: /Users/francoishug/Documents/Data/Pain_FHKT/Simulation/PAIN_sim_françois/Synthetic_signals.csv
+       inhibitory_input_sourcefile_fsamp: 1000
+
+Force target parameters -----
+   target_type: trapezoid
+   target_force_level: 30% MVC
+   If trapezoid:
+       ramp_duration: 5
+       plateau_duration: 62
+   If NOT trapezoid:
+       true_duration: 72
+   If sisnusoid:
+       target_force_sin_freq (used only if targt_type == 'sinusoid'): 1
+   low_pass_filter_force: True
+   low_pass_filter_of_force_cutoff: 10
+   keep_force_constant_despite_inhib: True
+Motor neurons size -----
+   min_soma_diameter: 50
+   max_soma_diameter: 100
+   size_distribution_exponent : 2
+
+Twitch force properties - parameters -----
+   twitch_force_range_small_MU: 5
+   twitch_force_range_large_MU: 140
+   twitch_tetanus_ratio_smallest_MN: 0.2
+   twitch_tetanus_ratio_smallest_MN: 0.2
+   steepness_of_twitch_to_tetanus_sigmoid: 1
+   time_to_peak_twitch_force_range_small_MU: 0.08
+   time_to_peak_twitch_force_range_large_MU: 0.02
+   multiplication_of_twitch_force_down_time: 4
+   axonal_conduction_velocity_constant: 8.0
+   axonal_conduction_velocity_exponent: 0.7
+
+Electrophysiological properties - parameters -----
+   resistance_constant: 960000.0
+   resistance_exponent: -2.4
+   membrane_conductance_scaling: 1
+   rheobase_constant: 0.0009000000000000001
+   rheobase_exponent: 2.5
+   rheobase_scaling: 100
+   capacitance_constant: 1.2
+   capacitance_exponent: 1
+   AHP_duration_constant: 25000.0
+   AHP_duration_exponent: -1.5
+   refractory_period_as_AHP_fraction: 0.2
